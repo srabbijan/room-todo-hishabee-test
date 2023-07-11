@@ -1,0 +1,163 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+//    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.hishabee.test.todo'
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId rootProject.applicationId
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+        }
+    }
+
+    flavorDimensions "hishabee"
+    productFlavors {
+        dev {
+            applicationId 'com.hishabee.test.todo'
+            buildConfigField "String", "BASE_URL", '"http://"'
+            resValue "string", "app_name", "Todo Dev"
+            applicationIdSuffix ".dev"
+        }
+
+        prod {
+            applicationId 'com.hishabee.test.todo'
+            buildConfigField "String", "BASE_URL", '"http://"'
+            resValue "string", "app_name", "Todo"
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    // App dependencies
+    implementation "androidx.core:core-ktx:$androidXVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.multidex:multidex:$multidexVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "androidx.cardview:cardview:$cardVersion"
+
+    //google
+    implementation "com.google.android.material:material:$materialVersion"
+//    implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
+//    implementation "com.google.android.gms:play-services-location:$playServicesLocationVersion"
+//    implementation "com.google.android.gms:play-services-base:$playServicesBaseVersion"
+//    implementation "com.google.maps:google-maps-services:$googleMapsServicesVersion"
+//    implementation "com.google.maps.android:android-maps-utils:$androidMapsUtilsVersion"
+
+    //retrofit
+//    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+//    implementation "com.google.code.gson:gson:$gsonVersion"
+//    implementation "com.squareup.retrofit2:converter-gson:$converterGsonVersion"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
+
+    // For StartActivityForResult and Runtime Permissions
+    implementation 'androidx.activity:activity-ktx:1.7.2'
+    implementation 'androidx.fragment:fragment-ktx:1.6.0'
+
+    //Android architecture components - Kotlin version
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelLifeCycleVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    //navigation component version
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationFragmentVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationUiVersion"
+
+    //custom view
+    implementation "com.wang.avi:library:$loaderViewVersion" // Custom loader indicator view.
+//    implementation "com.tbuonomo.andrui:viewpagerdotsindicator:$dotIndicatorVersion"
+//    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+
+    // Image Loader
+//    implementation "io.coil-kt:coil:$coilVersion"
+//    implementation "com.github.bumptech.glide:glide:$glide_version"
+//    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Room components
+    implementation "androidx.room:room-ktx:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //Event Bus
+//    implementation 'org.greenrobot:eventbus:3.1.1'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // Work Manager
+    implementation "androidx.work:work-runtime-ktx:$workManager"
+
+    //dynamic size
+    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+
+    //chart
+//    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //card input
+//    implementation 'com.github.konifar:creditcard-input-helper:0.4.2'
+
+    //CalenderView
+//    implementation "com.github.prolificinteractive:material-calendarview:2.0.0"
+
+//    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    // Android Test
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidXTestExtjunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidXTestEspressoCore"
+//    implementation "de.hdodenhof:circleimageview:${rootProject.ext.circle_imageview_version}"
+//    implementation "org.apache.commons:commons-lang3:${rootProject.ext.apache_lang3_version}"
+
+    //library modules
+//    implementation project(path: ':database')
+}

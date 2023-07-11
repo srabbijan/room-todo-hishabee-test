@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="add_new_task">Add new task</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="text_Yes">Yes</string>
+    <string name="success">Successful</string>
+    <string name="okay">Okay</string>
+    <string name="text_close">Close</string>
+    <string name="next">Next</string>
+    <string name="text_Submit">Submit</string>
+    <string name="text_Cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="make_it_done">Are you sure? You want make it as Complete.</string>
+    <string name="delete_it">Are you sure? You want Delete it</string>
+
+</resources>
